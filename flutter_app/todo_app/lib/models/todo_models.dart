@@ -1,5 +1,5 @@
 class Todo {
-  final int? id;
+  int? id;
   final String? title;
   final String? description;
 
@@ -9,4 +9,10 @@ class Todo {
     return Todo(
         id: json['id'], title: json['title'], description: json['description']);
   }
+
+  dynamic todoJson() => {
+        'id': id,
+        'title': title,
+        'description': description,
+      };
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/api/api.dart';
+import 'package:todo_app/screens/add_todo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,18 +31,27 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final todo_provider = Provider.of<TodoProvider>(context);
+    final todoProvider = Provider.of<TodoProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Todo App'),
       ),
       body: ListView.builder(
-          itemCount: todo_provider.todos.length,
+          itemCount: todoProvider.todos.length,
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
-              title: Text(todo_provider.todos[index].title.toString()),
-              subtitle: Text(todo_provider.todos[index].description.toString()),
+              title: Text(todoProvider.todos[index].title.toString()),
+              subtitle: Text(todoProvider.todos[index].description.toString()),
             );
+          }),
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(
+            Icons.add,
+            size: 32,
+          ),
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (ctx) => AddToDoScreen()));
           }),
     );
   }
