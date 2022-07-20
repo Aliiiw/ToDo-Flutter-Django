@@ -4,6 +4,9 @@ import '../models/todo_models.dart';
 import 'package:http/http.dart' as http;
 
 class TodoProvider extends ChangeNotifier {
+  TodoProvider() {
+    this.fetchTasks();
+  }
   List<Todo> _todos = [];
 
   List<Todo> get todos {
@@ -11,7 +14,7 @@ class TodoProvider extends ChangeNotifier {
   }
 
   fetchTasks() async {
-    final url = "http://127.0.0.1:8000/apis/v1/?format=json";
+    final url = 'http://127.0.0.1:8000/apis/v1/?format=json';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       var data = json.decode(response.body) as List;

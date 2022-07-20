@@ -36,11 +36,13 @@ class HomePage extends StatelessWidget {
         title: const Text('Todo App'),
       ),
       body: ListView.builder(
-        itemBuilder: (BuildContext (context, int index){
-          return;
-        }
-
-        ),
+          itemCount: todo_provider.todos.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              title: Text(todo_provider.todos[index].title.toString()),
+              subtitle: Text(todo_provider.todos[index].description.toString()),
+            );
+          }),
     );
   }
 }
